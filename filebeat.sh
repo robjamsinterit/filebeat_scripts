@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/bash
 
 export GODEBUG='madvdontneed=1'
 export SERIAL_NUMBER="$(jq -r '.[] | select(.name=="/Hardware/Hardware/0/SerialNumber").value' /home/sinterit/global_parameters.json)"
