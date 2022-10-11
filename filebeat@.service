@@ -1,0 +1,17 @@
+[Unit]
+Description=Filebeat sends log files to Logstash or directly to Elasticsearch for %I
+Documentation=https://www.elastic.co/beats/filebeat
+Wants=network-online.target
+After=network-online.target
+AssertPathExists="/home/sinterit/bin/filebeat/%i.yml"
+
+[Service]
+
+UMask=0027
+Environment="GODEBUG='madvdontneed=1'"
+Environment="BEAT_CONFIG=%i"
+ExecStart=/bin/bash /home/sinterit/bin/filebeat/filebeat.sh $BEAT_CONFIG
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

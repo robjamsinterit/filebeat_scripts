@@ -1,0 +1,56 @@
+# ============================== Filebeat inputs ===============================
+filebeat.inputs:
+- type: filestream
+  id: rasp1-filestream
+  enabled: true
+  paths:
+    - /home/sinterit/logs/*.log
+    - /home/sinterit/blackBox/blackBoxInput.csv
+    - /home/sinterit/logreadout.log
+    - /home/sinterit/dmesgout.log
+    - /home/sinterit/chromium_log*.txt
+    - /home/sinterit/print_log.jsonl
+    - /home/sinterit/.Xauthority
+    - /home/sinterit/.xsession-errors
+    - /var/log/Xorg*.log
+    - /home/sinterit_web/.pm2/logs/
+
+# ============================== Filebeat modules ==============================
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+# ======================= Elasticsearch template setting =======================
+
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+  _source.enabled: true
+
+
+#name: 
+
+# The tags of the shipper are included in their own field with each
+# transaction published.
+tags: ["3dprinter", '${SERIAL_NUMBER:noserial}', '${PRINTER_NAME:noname}']
+
+# Optional fields that you can specify to add additional information to the
+# output.
+#fields:
+#  env: staging
+
+# ================================== Outputs ===================================
+
+# ------------------------------ Logstash Output -------------------------------
+output.logstash:
+  hosts: ["10.235.207.54:5044"]
+
+# ================================= Processors =================================
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+
+
