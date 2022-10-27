@@ -13,4 +13,4 @@ ExecStart=/bin/bash /home/sinterit/bin/filebeat/filebeat.sh $BEAT_CONFIG
 Restart=always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
