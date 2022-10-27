@@ -8,7 +8,7 @@ printenv
 
 /home/sinterit/bin/filebeat/filebeat --environment systemd \
 --c "/home/sinterit/bin/filebeat/${1}.yml" \
---path.home /home/sinterit/bin/filebeat/filebeat \
+--path.home /home/sinterit/bin/filebeat \
 --path.config /home/sinterit/bin/filebeat \
 --path.data /home/sinterit/bin/filebeat \
 --path.logs /home/sinterit/bin/filebeat
