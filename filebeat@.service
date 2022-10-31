@@ -11,6 +11,7 @@ Environment="GODEBUG='madvdontneed=1'"
 Environment="BEAT_CONFIG=%i"
 ExecStart=/bin/bash /home/sinterit/bin/filebeat/filebeat.sh $BEAT_CONFIG
 Restart=always
+RestartSec=30s
 
 [Install]
 WantedBy=default.target
