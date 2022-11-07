@@ -13,7 +13,7 @@ filebeat.inputs:
     - /home/sinterit/.Xauthority
     - /home/sinterit/.xsession-errors
     - /var/log/Xorg*.log
-    - /home/sinterit_web/.pm2/logs/
+    - /home/sinterit_web/.pm2/logs/*.log
 
 # ============================== Filebeat modules ==============================
 filebeat.config.modules:
