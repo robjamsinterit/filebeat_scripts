@@ -5,15 +5,10 @@ filebeat.inputs:
   enabled: true
   paths:
     - /home/sinterit/logs/*.log
-    - /home/sinterit/blackBox/blackBoxInput.csv
-    - /home/sinterit/logreadout.log
-    - /home/sinterit/dmesgout.log
-    - /home/sinterit/chromium_log*.txt
-    - /home/sinterit/print_log.jsonl
     - /home/sinterit/.Xauthority
     - /home/sinterit/.xsession-errors
     - /var/log/Xorg*.log
-    - /home/sinterit_web/.pm2/logs/*.log
+    - /home/sinterit_web/.pm2/logs/www*.log
 
 # ============================== Filebeat modules ==============================
 filebeat.config.modules:
@@ -32,12 +27,14 @@ setup.template.settings:
 
 # The tags of the shipper are included in their own field with each
 # transaction published.
-tags: ["3dprinter", '${SERIAL_NUMBER:noserial}', '${PRINTER_NAME:noname}']
+tags: ["3dprinter"]
 
 # Optional fields that you can specify to add additional information to the
 # output.
-#fields:
-#  env: staging
+fields:
+  env: prod
+  serial: '${SERIAL_NUMBER:noserial}'
+  printer_name: '${PRINTER_NAME:noname}'
 
 # ================================== Outputs ===================================
 
