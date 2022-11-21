@@ -15,7 +15,7 @@ monitoring:
   enabled: true
   cluster_uuid: "${CLUSTER_UUID}"
   elasticsearch:
-    hosts: ["10.235.207.54:5044", "127.0.0.1:5044", "10.8.0.1:5044"]
+    hosts: ["10.235.207.54:9200", "127.0.0.1:9200", "10.8.0.1:9200"]
     protocol: "https"
     username: "${BEAT_USER:beats_system}"
     password: "${BEAT_PASS:beats_system}"
